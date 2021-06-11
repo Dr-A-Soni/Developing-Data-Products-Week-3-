@@ -1,0 +1,70 @@
+---
+title: "R Markdown Presentation and Plotly"
+author: "Dr -A"
+date: "11/06/2021"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+	message = FALSE,
+	warning = FALSE,
+	cache = TRUE,
+	tidy = TRUE,
+	tidy.opts = list(width.cutoff = 60))
+```
+
+## Overview:{.smaller}
+
+This assignment consist task of creating a web page presentation using R Markdown that features a plot created with ploty.
+The page than need to be hosted on either GitHub, Rpubs or Neocities.
+
+ Requirements:
+
+ * The webpage must contain the date that I created the document on, and 
+ it must contain a plot created with Plotly, and little bit of creativity.
+ 
+## In this assignment I will use Iris and diamond data to plot.{.smaller}
+
+Load Dataset and Libraries:{.smaller}
+
+```{r}
+library(plotly)
+data("iris")
+data("diamonds")
+
+```
+
+## Data Information for Iris{.smaller}
+
+```{r}
+summary(iris)
+```
+
+## Data Indormation for Diamonds:{.smaller}
+```{r}
+summary(diamonds)
+```
+
+
+## Plot1: {.smaller}
+```{r}
+plot_ly(data = iris, x = ~Sepal.Length, y = ~Petal.Length, color = iris$Species)
+
+```
+
+### Hover over text plot with diamond data.{.smaller}
+```{r, echo= FALSE}
+dia_mond <- diamonds[sample(nrow(diamonds), 500), ]
+```
+
+## Figure{.smaller}
+```{r}
+plot_ly(data = dia_mond, x = ~carat, y = ~price, color = ~carat,
+        text = ~paste("Price:", price, "$<br>Cut:", cut), size = ~carat)
+
+```
+
+
+
+
